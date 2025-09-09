@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tarot-3card
+    env: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: SITE_URL
+        sync: false
+      - key: KICK_CHANNEL_URL
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PRICE_3CARD
+        sync: false
+      - key: N8N_WEBHOOK_URL
+        sync: false
+      - key: N8N_AUTH_SECRET
+        sync: false
