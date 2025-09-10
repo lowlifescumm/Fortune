@@ -57,7 +57,6 @@ Now, fill in the values in `.env.local`:
 - `STRIPE_WEBHOOK_SECRET`: The signing secret for your Stripe webhook endpoint.
 - `STRIPE_PRICE_3CARD`: The API ID of the Stripe Price for your product.
 - `N8N_WEBHOOK_URL`: The URL of your n8n incoming webhook.
-- `N8N_AUTH_SECRET`: A strong, random secret you create for signing payloads sent to n8n.
 
 ### 4. Creating the Stripe Product and Price
 

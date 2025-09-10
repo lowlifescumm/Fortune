@@ -1,16 +1,14 @@
 import { NextResponse } from 'next/server';
 import type { Stripe } from 'stripe';
 import { stripe } from '@/lib/stripe';
-import { createHmacSignature } from '@/lib/crypto';
 import { ulid } from 'ulid';
 
 const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL;
-const n8nAuthSecret = process.env.N8N_AUTH_SECRET;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 async function sendToN8n(session: Stripe.Checkout.Session) {
-  if (!n8nWebhookUrl || !n8nAuthSecret) {
-    throw new Error('Missing n8n configuration environment variables.');
+  if (!n8nWebhookUrl) {
+    throw new Error('Missing n8n webhook URL environment variable.');
   }
 
   if (!session.metadata || !session.customer_details) {
@@ -36,14 +34,12 @@ async function sendToN8n(session: Stripe.Checkout.Session) {
   };
 
   const payloadString = JSON.stringify(payload);
-  const signature = createHmacSignature(payloadString, n8nAuthSecret);
 
   // Fire-and-forget POST to n8n
   fetch(n8nWebhookUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-N8N-Signature': signature,
     },
     body: payloadString,
   }).then(response => {
