@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 
 const Label = React.forwardRef<
   HTMLLabelElement,
-  React.HTMLAttributes<HTMLLabelElement>
+  React.LabelHTMLAttributes<HTMLLabelElement>
 >(({ className, ...props }, ref) => (
   <label
     ref={ref}
