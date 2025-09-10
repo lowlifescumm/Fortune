@@ -40,6 +40,7 @@ This is a full-stack web application for booking and paying for 3-card tarot rea
     ```bash
     npm install
     ```
+    This will also generate a `package-lock.json` file. It is recommended to commit this file to your version control to ensure consistent dependencies across all environments.
 
 ### 3. Environment Variables
 
@@ -97,7 +98,7 @@ To test the Stripe webhook integration on your local machine, you can use the [S
 This project is configured for deployment on [Render](https://render.com/).
 
 1.  Create a new **Web Service** on Render and connect your GitHub repository.
-2.  Render will automatically detect the `render.yaml` file and configure the service.
+2.  Render will automatically detect the `render.yaml` file and use its settings. This includes the build command `npm ci && npm run build`, which uses the `package-lock.json` for fast, reliable installs.
 3.  Under **Environment**, add the environment variables from your `.env.local` file. **Important:** Do not commit your `.env.local` file to Git.
-4.  Deploy the service. Render will use the `npm ci && npm run build` command to build the project and `npm run start` to run it.
+4.  Deploy the service.
 5.  Once deployed, make sure to update your `SITE_URL` environment variable to the public URL provided by Render. You will also need to create a new webhook endpoint in Stripe that points to `https://your-site.onrender.com/api/stripe/webhook`.
