@@ -9,10 +9,27 @@
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --accent: 158 95% 50%; /* A neon green/cyan */
+    --glow-blue: 195 100% 50%;
   }
 }
 
 body {
   color: hsl(var(--foreground));
   background: hsl(var(--background));
+}
+
+@layer utilities {
+  .text-glow-blue {
+    color: hsl(var(--glow-blue));
+    text-shadow: 0 0 5px hsl(var(--glow-blue)), 0 0 10px hsl(var(--glow-blue)), 0 0 20px hsl(var(--glow-blue)), 0 0 40px hsl(var(--glow-blue));
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px hsl(var(--glow-blue)), 0 0 10px hsl(var(--glow-blue)), 0 0 20px hsl(var(--glow-blue));
+  }
+  50% {
+    text-shadow: 0 0 10px hsl(var(--glow-blue)), 0 0 20px hsl(var(--glow-blue)), 0 0 40px hsl(var(--glow-blue));
+  }
 }

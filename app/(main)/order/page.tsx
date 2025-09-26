@@ -13,7 +13,7 @@ export default function HomePage() {
         </p>
         <div className="mt-8">
           <Link
-            href="/order"
+            href="/order-form"
             className="inline-block rounded-md bg-accent px-8 py-4 text-lg font-semibold text-gray-900 shadow-lg transition-transform duration-200 ease-in-out hover:scale-105"
           >
             Order a Reading
